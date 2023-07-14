@@ -1,4 +1,4 @@
-import type { AstroConfig, AstroIntegration } from 'astro';
+import type { AstroConfig, AstroIntegration, RouteType } from 'astro';
 import {
 	EnumChangefreq,
 	simpleSitemapAndIndex,
@@ -107,7 +107,7 @@ const createPlugin = (options?: SitemapOptions): AstroIntegration => {
 
 							if (config.trailingSlash === 'never') {
 								urls.push(newUrl);
-							} else if (config.build.format === 'directory' && !newUrl.endsWith('/')) {
+							} else if (config.build.format === 'directory' && !newUrl.endsWith('/') && r.type === 'page') {
 								urls.push(newUrl + '/');
 							} else {
 								urls.push(newUrl);
